@@ -8,11 +8,19 @@ _.templateSettings = {
 
 var AppModel = Backbone.Model.extend({
 
+  defaults: {
+    who: 'world!'
+  }
+
 });
 
 var AppCollection = Backbone.Collection.extend({
 
+  model: AppModel
+
 });
+
+var appCollection = new AppCollection();
 
 var AppView = Backbone.View.extend({
 
