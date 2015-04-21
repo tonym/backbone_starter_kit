@@ -18,15 +18,21 @@ var AppView = Backbone.View.extend({
 
   el: $('#workspace'),
 
+  control: $('#btn-updater'),
+
   template: _.template("<h3>Hello {{ who }}</h3>"),
 
-  initialize: function(){
+  initialize: function() {
 
-    this.render();
+    var self = this;
+
+    this.control.on('click', function() {
+      self.render();
+    });
 
   },
 
-  render: function(){
+  render: function() {
 
     this.$el.html(this.template({who: 'world!'}));
 
