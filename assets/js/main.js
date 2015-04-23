@@ -9,6 +9,7 @@ _.templateSettings = {
 var AppModel = Backbone.Model.extend({
 
   defaults: {
+    id: '',
     who: 'world!'
   }
 
@@ -16,33 +17,46 @@ var AppModel = Backbone.Model.extend({
 
 var AppCollection = Backbone.Collection.extend({
 
-  model: AppModel
+  model: AppModel,
+  url: '/assets/data/classnotes.json'
 
 });
 
-var appCollection = new AppCollection();
-
 var AppView = Backbone.View.extend({
+
+  appCollection: new AppCollection(),
 
   el: $('#workspace'),
 
   control: $('#btn-updater'),
 
-  template: _.template("<h3>Hello {{ who }}</h3>"),
+  template: $('#template').html(),
 
   initialize: function() {
 
     var self = this;
 
-    this.control.on('click', function() {
-      self.render();
+    this.appCollection.fetch({
+      reset : true
+    });
+
+    this.appCollection.on('reset', function() {
+
+      self.control.prop('disabled', false).html('Who are you?');
+
+      self.control.on('click', function() {
+        self.render();
+      });
+
     });
 
   },
 
   render: function() {
 
-    this.$el.html(this.template({who: 'world!'}));
+    var tmpl = _.template(this.template, this.appCollection.at(0).toJSON());
+
+    this.$el.append(tmpl);
 
     return this;
 

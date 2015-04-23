@@ -10,22 +10,35 @@
     <title>Backbone.js Starter Kit</title>
 
     <link rel="stylesheet" type="text/css" href="/assets/app/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/app/lib/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
 
   </head>
 
   <body>
 
-    <div class="workspace" id="workspace">
-      <p>
-        Backbone Starter Kit Workspace
-      </p>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12">
+
+          <div class="workspace" id="workspace">
+            <p>
+              Backbone Starter Kit Workspace
+            </p>
+          </div>
+
+          <div class="control" id="control">
+            <form>
+              <button type="button" class="btn-updater" id="btn-updater" disabled><i class="fa fa-spinner fa-spin"></i> Loading</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
     </div>
 
-    <div class="control" id="control">
-      <form>
-        <button type="button" class="btn-updater" id="btn-updater">Change the text</button>
-      </form>
+    <div id="template" class="template hidden">
+      <h3>I'm the {{who}}</h3>
     </div>
 
     <script src="/assets/app/lib/jquery/dist/jquery.min.js"></script>
