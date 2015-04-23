@@ -64,8 +64,4 @@ var AppView = Backbone.View.extend({
 
 });
 
-$(document).ready(function() {
-
-  var appView = new AppView();
-
-});
+var appView = new AppView();
