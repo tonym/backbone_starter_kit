@@ -38,12 +38,15 @@
     </div>
 
     <div id="template" class="template hidden">
-      <h3>I'm the {{who}}</h3>
+      {{#introductions}}
+        <h3>{{introduction}}</h3>
+      {{/introductions}}
     </div>
 
     <script src="/assets/app/lib/jquery/dist/jquery.min.js"></script>
     <script src="/assets/app/lib/lodash/dist/lodash.min.js"></script>
     <script src="/assets/app/lib/backbone/backbone.js"></script>
+    <script src="/assets/app/lib/mustache/mustache.js"></script>
     <script src="/assets/js/main.js"></script>
 
   </body>

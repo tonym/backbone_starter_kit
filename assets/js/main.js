@@ -10,7 +10,7 @@ var AppModel = Backbone.Model.extend({
 
   defaults: {
     id: '',
-    who: 'world!'
+    introduction: ''
   }
 
 });
@@ -42,7 +42,7 @@ var AppView = Backbone.View.extend({
 
     this.appCollection.on('reset', function() {
 
-      self.control.prop('disabled', false).html('Who are you?');
+      self.control.prop('disabled', false).html('Introductions, please');
 
       self.control.on('click', function() {
         self.render();
@@ -54,9 +54,9 @@ var AppView = Backbone.View.extend({
 
   render: function() {
 
-    var tmpl = _.template(this.template, this.appCollection.at(0).toJSON());
+    var tmpl = Mustache.to_html(this.template, this.appCollection.at(0).toJSON());
 
-    this.$el.append(tmpl);
+    this.$el.html(tmpl);
 
     return this;
 
