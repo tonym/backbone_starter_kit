@@ -1,0 +1,24 @@
+/**
+ * @file main.css
+ * @author Tony M
+ */
+
+/**
+ * Bootstrap overrides
+ */
+.navbar {
+  border-radius: 0;
+}
+
+/**
+ * Custom style
+ */
+.brand {
+  max-width: 100px;
+  width: 10%;
+}
+.loading {
+  text-align: center;
+  font-size: 36px;
+  margin-top: 60px;
+}

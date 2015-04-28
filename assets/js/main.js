@@ -1,67 +1,35 @@
-/**
- * main.js
- */
+(function() {
 
-_.templateSettings = {
-  'interpolate': /{{([\s\S]+?)}}/g
-};
+  'use strict';
 
-var AppModel = Backbone.Model.extend({
+  require.config({
 
-  defaults: {
-    id: '',
-    introduction: ''
-  }
+    baseUrl : '/assets',
 
-});
+    paths : {
+      'backbone'                     : 'app/lib/backbone/backbone',
+      'bootstrap'                    : 'app/lib/bootstrap/dist/js/bootstrap.min',
+      'jquery'                       : 'app/lib/jquery/dist/jquery.min',
+      'mustache'                     : 'app/lib/mustache/mustache',
+      'require.text'                 : 'app/lib/require_text/text',
+      'underscore'                   : 'app/lib/lodash/dist/lodash.min'
+    },
 
-var AppCollection = Backbone.Collection.extend({
+    shim : {
+      'backbone' : {
+        deps : ['jquery', 'underscore']
+      },
+      'bootstrap' : {
+        deps : ['backbone']
+      }
+    },
 
-  model: AppModel,
-  url: '/assets/data/classnotes.json'
+    waitSeconds : 0
 
-});
+  });
 
-var AppView = Backbone.View.extend({
+  require(['js/router'], function(Router) {
+    new Router();
+  });
 
-  appCollection: new AppCollection(),
-
-  el: $('#workspace'),
-
-  control: $('#btn-updater'),
-
-  template: $('#template').html(),
-
-  initialize: function() {
-
-    var self = this;
-
-    this.appCollection.fetch({
-      reset : true
-    });
-
-    this.appCollection.on('reset', function() {
-
-      self.control.prop('disabled', false).html('Introductions, please');
-
-      self.control.on('click', function() {
-        self.render();
-      });
-
-    });
-
-  },
-
-  render: function() {
-
-    var tmpl = Mustache.to_html(this.template, this.appCollection.at(0).toJSON());
-
-    this.$el.html(tmpl);
-
-    return this;
-
-  }
-
-});
-
-var appView = new AppView();
+}());
