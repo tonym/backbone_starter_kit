@@ -1,5 +1,5 @@
 /**
- * @file teams.model.js
+ * @file teams.view.js
  * @author Tony M
  */
 
